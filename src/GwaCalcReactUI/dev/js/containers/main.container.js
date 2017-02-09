@@ -40,6 +40,11 @@ class MainApp extends React.Component {
                 <button onClick={this.props.AddNewRow}>Add New Row</button>
 
                 <button onClick={() => {this.props.Calculate(this.props.main.grades)}}>Calculate</button>
+
+                <div className="result">
+                    <h3>Your GWA is {this.props.main.gwa}</h3>
+                    <h3>Total Units {this.props.main.total_units}</h3>
+                </div>
             </div>
         );
     }

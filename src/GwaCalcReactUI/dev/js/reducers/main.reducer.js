@@ -7,7 +7,9 @@ let defaultState = {
             score: undefined
         }
     ],
-    cur_id: 1
+    cur_id: 1,
+    gwa: undefined,
+    total_units: undefined
 }
 
 export default function(state=defaultState, action) {
@@ -42,6 +44,10 @@ export default function(state=defaultState, action) {
                 }
             }
             return {...state, grades: state.grades}
+        case "total_units_changed":
+            return {...state, total_units: action.payload}
+        case "gwa_changed":
+            return {...state, gwa: action.payload}
     }
     return state;
 }

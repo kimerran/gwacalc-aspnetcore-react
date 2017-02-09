@@ -10,9 +10,22 @@ export const AddNewRow = () => {
 }
 
 export const Calculate = (grades) => {
-    let totalUnit = grades.reduce((acc, cur) => {
-        return acc + cur.unit;
-    });
+    return function(dispatch) {
+        let totalUnit =
+        grades
+            .map((g)        => {return Number(g.unit)})
+            .reduce((a, b)  => {return a + b});
+
+        let totalWeight =
+        grades
+            .map((g)        => {return Number(g.unit) * Number(g.score)})
+            .reduce((a,b)   => {return a + b});
+
+       const gwa = totalWeight / totalUnit;
+        dispatch({type: "total_units_changed", payload: totalUnit})
+        dispatch({type: "gwa_changed", payload: gwa})
+    }
+
 }
 
 export const HandleUnitChange = (gradeId, newValue) => {
