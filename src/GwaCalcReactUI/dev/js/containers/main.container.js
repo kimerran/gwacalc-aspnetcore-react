@@ -1,7 +1,13 @@
 import React                from "react";
 import {bindActionCreators} from "redux";
 import {connect}            from "react-redux";
-import {SayHello}           from "../actions/main.actions";
+import {
+    AddNewRow,
+    Calculate,
+    HandleUnitChange,
+    HandleScoreChange,
+    HandleSubjectChange
+} from "../actions/main.actions";
 
 import Grade from "../components/grade";
 
@@ -12,7 +18,16 @@ class MainApp extends React.Component {
     renderGrades() {
         return this.props.main.grades.map((grade) => {
             return (
-                <Grade subject={grade.subject} unit={grade.unit} grade={grade.grade} />
+                <Grade
+                    key={grade.id}
+                    gradeId={grade.id}
+                    subject={grade.subject}
+                    unit={grade.unit}
+                    score={grade.score}
+                    onUnitChange={this.props.HandleUnitChange}
+                    onScoreChange={this.props.HandleScoreChange}
+                    onSubjectChange={this.props.HandleSubjectChange}
+                    />
             )
         });
     }
@@ -21,6 +36,10 @@ class MainApp extends React.Component {
             <div>
                 <h1>GWA Calculator</h1>
                 {this.renderGrades()}
+
+                <button onClick={this.props.AddNewRow}>Add New Row</button>
+
+                <button onClick={() => {this.props.Calculate(this.props.main.grades)}}>Calculate</button>
             </div>
         );
     }
@@ -36,7 +55,11 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch){
     return bindActionCreators({
-        SayHello: SayHello
+        AddNewRow: AddNewRow,
+        Calculate: Calculate,
+        HandleUnitChange: HandleUnitChange,
+        HandleScoreChange: HandleScoreChange,
+        HandleSubjectChange: HandleSubjectChange
     }, dispatch);
 }
 

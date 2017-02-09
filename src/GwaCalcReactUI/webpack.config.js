@@ -14,7 +14,7 @@ module.exports = {
         ]
     },
     output: {
-        path: "wwwroot/js",
+        path: "../GwaCalcServer/wwwroot/js",
         filename: "app.js"
     },
     plugins: [
