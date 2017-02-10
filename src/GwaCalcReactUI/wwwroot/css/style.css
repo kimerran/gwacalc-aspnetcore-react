@@ -1,0 +1,25 @@
+body {
+   
+}
+.grade-row {
+    padding-right: 0;
+}
+.grade-row-set {
+    padding-bottom: 2px;
+}
+
+.gwa-result {
+    height: 136px;
+}
+
+.gwa-result h4 {
+    font-size: 50px;
+}
+
+.gwa-result p {
+    font-size: 36px;
+}
+
+.gwa-container {
+    padding-bottom: 12px;
+}

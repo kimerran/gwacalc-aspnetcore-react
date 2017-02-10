@@ -35,16 +35,43 @@ class MainApp extends React.Component {
         return (
             <div>
                 <h1>GWA Calculator</h1>
+                <div className="row">
+                    <span className="col-md-4 grade-row">
+                        <strong>Subject</strong>
+                    </span>
+                    <span className="col-md-2 grade-row">
+                        <strong>Unit</strong>
+                    </span>
+                    <span className="col-md-2 grade-row">
+                        <strong>Grade</strong>
+                    </span>
+                </div>
+
                 {this.renderGrades()}
 
-                <button onClick={this.props.AddNewRow}>Add New Row</button>
-
-                <button onClick={() => {this.props.Calculate(this.props.main.grades)}}>Calculate</button>
-
-                <div className="result">
-                    <h3>Your GWA is {this.props.main.gwa}</h3>
-                    <h3>Total Units {this.props.main.total_units}</h3>
+                <div className="row gwa-container">
+                    <div className="col-md-2">
+                        <button onClick={this.props.AddNewRow}
+                            className="btn btn-info btn-block" type="button">Add New</button>
+                    </div>
+                    <div className="col-md-2">
+                        <button onClick={() => {this.props.Calculate(this.props.main.grades)}}
+                            className="btn btn-info btn-block" type="button">Calculate</button>
+                    </div>
                 </div>
+                {
+                    (this.props.main.gwa !== undefined)
+                    ?
+                    <div className="row gwa-container">
+                        <div className="col-md-6">
+                            <div className="alert alert-info gwa-result">
+                                <h4>Your GWA is {Number(this.props.main.gwa).toFixed(4)}</h4>
+                                <p>Total Units: {this.props.main.total_units}</p>
+                            </div>
+                        </div>
+                    </div>
+                    : null
+                }
             </div>
         );
     }

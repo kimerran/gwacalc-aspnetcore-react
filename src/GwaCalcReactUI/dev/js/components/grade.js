@@ -26,15 +26,17 @@ class Grade extends React.Component {
 
     render() {
         return (
-            <div style={{display: "flex"}}>
-                <div>
-                    <input onChange={this.handleSubjectChange.bind(this)} type="text" value={this.state.subject} />
-                </div>
-                <div>
-                    <input onChange={this.handleUnitChange.bind(this)} type="text" value={this.state.unit} />
-                </div>
-                <div>
-                    <input onChange={this.handleScoreChange.bind(this)} type="text" value={this.state.grade} />
+            <div className="gwa-container">
+                <div className="row form-horizontal grade-row-set">
+                    <div className="col-md-4 grade-row">
+                        <input onChange={this.handleSubjectChange.bind(this)} type="text" value={this.state.subject} className="form-control" />
+                    </div>
+                    <div className="col-md-2 grade-row">
+                        <input onChange={this.handleUnitChange.bind(this)} type="text" value={this.state.unit} className="form-control" />
+                    </div>
+                    <div className="col-md-2 grade-row">
+                        <input onChange={this.handleScoreChange.bind(this)} type="text" value={this.state.grade} className="form-control" />
+                    </div>
                 </div>
             </div>
         );
