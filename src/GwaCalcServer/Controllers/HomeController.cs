@@ -1,19 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using HashidsNet;
+using GwaCalcServer.Database;
 
 namespace GwaCalcServer.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+        private GwaCalcDbContext _ctx;
+        public HomeController(GwaCalcDbContext ctx)
+        {
+            _ctx = ctx;
+        }
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet("g/{hashId}")]
+        public IActionResult ViewGradeSet(string hashId)
+        {
+            var hashid = new Hashids("gwa-calc-server");
+            var gradeSetId = hashid.Decode(hashId)[0];
+            var grades = _ctx.Grades.Where(x => x.GradeSetId == gradeSetId).ToList();
+            return View(grades);
         }
     }
 }

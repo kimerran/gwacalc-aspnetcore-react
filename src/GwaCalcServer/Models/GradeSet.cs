@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace GwaCalcServer.Models
 {
-    public class Grade
+    public class GradeSet
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Subject { get; set; }
-        public decimal Unit { get; set; }
-        public decimal Score { get; set; }
-        public int GradeSetId { get; set; }
+        public Guid GradeSetGuid { get; set; }
     }
 }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using GwaCalcServer.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace GwaCalcServer
 {
@@ -29,6 +31,9 @@ namespace GwaCalcServer
         {
             // Add framework services.
             services.AddMvc();
+
+            var connection = @"User ID=gwacalc;Password=calculator;Host=10.10.10.204;Port=5432;Database=gwacalc;Pooling=true;";
+            services.AddDbContext<GwaCalcDbContext>(options => options.UseNpgsql(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
